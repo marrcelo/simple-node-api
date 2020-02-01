@@ -10,9 +10,10 @@ const {
   reviewByBrand
 } = require('../controllers/vehicle.controller');
 
-const router = express.Router()
+const router = express.Router();
 
 router.get('/vehicles', async (req, res) => find(req, res));
+
 router.get('/vehicle/:plate', async (req, res) => findByPlate(req, res));
 router.post('/vehicle', async (req, res) => create(req, res));
 router.patch('/vehicle/:plate', async (req, res) => update(req, res));

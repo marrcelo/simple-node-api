@@ -103,16 +103,9 @@ const reviewByBrand = async (req, res) => {
   if (!brand) return res.status(400).send(`Brand value is required.`);
   try {
     const result = await Vehicle.aggregate([
-      {
-        $match: { brand: brand }
-      },
+      { $match: { brand: brand } },
       { $unwind: '$reviews' },
-      {
-        $group: {
-          _id: '$brand',
-          paidTotal: { $sum: '$reviews.price' }
-        }
-      }
+      { $group: { _id: '$brand', paidTotal: { $sum: '$reviews.price' } } }
     ]);
 
     res.send(result);
